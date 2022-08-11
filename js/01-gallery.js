@@ -1,5 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
+
 const imageContainer = document.querySelector(".gallery");
 const imageMarkup = createImageCardMarkup(galleryItems);
 
@@ -25,6 +26,15 @@ let imageLink = "";
 
 imageContainer.addEventListener("click", onImageClick);
 
+function onImageClick(evt) {
+  const isImagePickedEl = evt.target.classList.contains("gallery__image");
+  if (!isImagePickedEl) {
+    return;
+  }
+
+  imageLink = evt.target.dataset.source;
+}
+
 document.querySelector(".gallery__link").onclick = () => {
   basicLightbox
     .create(
@@ -34,13 +44,3 @@ document.querySelector(".gallery__link").onclick = () => {
     )
     .show();
 };
-
-function onImageClick(evt) {
-  const isImagePickedEl = evt.target.classList.contains("gallery__image");
-  if (!isImagePickedEl) {
-    return;
-  }
-
-  console.log(evt.target.dataset.source);
-  imageLink = evt.target.dataset.source;
-}
