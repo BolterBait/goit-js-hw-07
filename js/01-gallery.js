@@ -21,22 +21,26 @@ imageContainer.addEventListener("click", (evt) => {
 });
 
 const galleryItem = document.querySelector(".gallery__image");
+let imageLink = "";
 
 imageContainer.addEventListener("click", onImageClick);
-function onImageClick(evt) {
-  const isImagePickedEl = evt.target.classList.contains("gallery__image");
-  if (!isImagePickedEl) {
-    return;
-  }
-  console.log(evt.target.dataset.source);
-}
 
 document.querySelector(".gallery__link").onclick = () => {
   basicLightbox
     .create(
       `
-		<img width="1400" height="900" src="https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg">
+		<img width="1400" height="900" src="${imageLink}">
 	`
     )
     .show();
 };
+
+function onImageClick(evt) {
+  const isImagePickedEl = evt.target.classList.contains("gallery__image");
+  if (!isImagePickedEl) {
+    return;
+  }
+
+  console.log(evt.target.dataset.source);
+  imageLink = evt.target.dataset.source;
+}
