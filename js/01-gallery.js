@@ -11,7 +11,7 @@ function createImageCardMarkup(galleryItems) {
     .map(({ preview, original, description }) => {
       return `<div class="gallery__item">
       <a class="gallery__link" href="${original}">
-      <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}}"/>
+      <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}"/>
       </a></div>`;
     })
     .join("");
@@ -26,9 +26,25 @@ function onImageClick(evt) {
     return;
   }
   const imageLink = evt.target.dataset.source;
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${imageLink}" width="800" height="600">
-`);
+`,
+    {
+      onShow: () => {
+        document.addEventListener("keydown", onEscBtnAction);
+      },
+      onClose: () => {
+        document.removeEventListener("keydown", onEscBtnAction);
+      },
+    }
+  );
 
   instance.show();
+
+  function onEscBtnAction(e) {
+    if (e.key === "Escape") {
+      instance.close();
+    }
+  }
 }
