@@ -17,13 +17,6 @@ function createImageCardMarkup(galleryItems) {
     .join("");
 }
 
-// imageContainer.addEventListener("click", (evt) => {
-//   evt.preventDefault();
-// });
-
-// const galleryItem = document.querySelector(".gallery__image");
-// let imageLink = "";
-
 imageContainer.addEventListener("click", onImageClick);
 
 function onImageClick(evt) {
@@ -39,20 +32,3 @@ function onImageClick(evt) {
 
   instance.show();
 }
-
-// document.querySelector(".gallery__link").onclick = () => {
-//   basicLightbox
-//     .create(
-//       `
-// 		<img width="1400" height="900" src="${imageLink}">
-// 	`
-//     )
-//     .show();
-// };
-// import * as basicLightbox from "basiclightbox";
-
-// const instance = basicLightbox.create(`
-//     <img src="assets/images/image.png" width="800" height="600">
-// `);
-
-// instance.show();
